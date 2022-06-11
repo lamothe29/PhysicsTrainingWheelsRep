@@ -1,0 +1,258 @@
+package ptwPackage;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class welcomeScreen {
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public static void main(String[] args) throws IOException {
+//Welcome statement
+		System.out.println("Welcome to Physics Training Wheels! I'm Phyl, your physics phriend. What's your name'?");
+
+		try (Scanner input1 = new Scanner(System.in)) {
+			String userName = input1.next();
+			  
+			System.out.printf("Nice to meet you %s! Let's get started...", userName);
+		
+//1st question: Only asks about unit 1: kinematics
+		System.out.printf("Is the object in this question moving at a constant speed, speeding up, or slowing down?"
+				+ "\n Type 1 for constant speed, 2 for speeding up, and 3 for slowing down.");
+
+		try (Scanner input2 = new Scanner(System.in)){ 
+			int motionStatus = input2.nextInt();
+			  
+			if (motionStatus == 1) {
+				System.out.println("Cool, You said the object is moving at a constant speed.");
+				System.out.println("Is the question asking for how far (distance), how long (time interval), "
+						+ "\n or how fast (velocity)? Type 1 for distance, 2 for time interval, and 3 for velocity.");
+					
+				try (Scanner input3 = new Scanner(System.in)){
+						int desiredVariable = input3.nextInt();
+						if (desiredVariable == 1) {
+						
+							System.out.println("Ok, so we'll need to know how fast the object was moving."
+									+ " \n Type the speed as a whole number: (Ex. 35) ");
+							
+						try(Scanner input4 = new Scanner(System.in)){
+							int speedValue = input4.nextInt();
+							
+							System.out.println("Good stuff....let's keep going. How many seconds did the object move for?");
+							
+							try( Scanner input5 = new Scanner(System.in)){
+								int duration = input5.nextInt();
+								
+								constantVelocity prob1 = new constantVelocity();
+								prob1.findDistance(speedValue, duration);
+		
+			}}
+			} else if (desiredVariable == 2) {
+				
+				System.out.println("Ok, so we'll need to know how fast the object was moving. "
+						+ "\n Type the speed as a whole number: (Ex. 35) ");
+				
+			try(Scanner input6 = new Scanner(System.in)){
+				int speedValue = input6.nextInt();
+				
+				System.out.println("Good stuff....let's keep going. How many meters did the object travel?");
+				
+				try( Scanner input7 = new Scanner(System.in)){
+					int dist = input7.nextInt();
+					
+					constantVelocity prob1 = new constantVelocity();
+					prob1.findTime(dist, speedValue);}}}
+						
+			else if (desiredVariable == 3) {
+				
+				System.out.println("Ok, so we'll need to know how long the object was moving for. Type the time of travel as"
+						+ "\n a whole number: (Ex. 35) ");
+				
+			try(Scanner input8 = new Scanner(System.in)){
+				int time = input8.nextInt();
+				
+				System.out.println("Good stuff....let's keep going. How many meters did the object travel?");
+				
+				try( Scanner input9 = new Scanner(System.in)){
+					int dist = input9.nextInt();
+					
+					constantVelocity prob1 = new constantVelocity();
+					prob1.findSpeed(dist, time);}}}
+						
+						
+		  }	
+		} else if (motionStatus == 2 || motionStatus == 3) {
+			
+			
+			System.out.println("Gotcha, so the object is changing velocity and therefore experiencing accelertation. We have 5 "
+					+ "\n variables to work with and we only need to know 3 of them to solve for an unknown.");
+			System.out.println("The 5 variables are initial velocity, (v'), final velocity (v), acceleration (a), displacement (x),"
+					+ "\n and time interval (t).");
+			System.out.println(" ");
+			System.out.println("There are always three given values, either directly or indirectly. Often, a value can be zero "
+					+ "\n depending on the situation. For example, it the object starts from rest, the initial velocity is zero. "
+					+ "\n If the object comes to a stop, the final velocity is zero.");
+			
+			System.out.println(" ");
+			System.out.println("The toughest part is knowing which equation to use. But the process is simple: identify what"
+					+ "\n you're looking for (THAT VARIABLE HAS TO BE IN THE EQUATION YOU PICK, OR ELSE YOU CAN SOLVE FOR IT), "
+					+ "\n identify the other values you know, whichever variable is left is the one that does NOT need to be in"
+					+ "\n the equation. Therefore, pick the equation that does not have the variable that you don't have or need.");
+			System.out.println(" ");
+			System.out.println("Here's the 4 equations we'll work with: (Notice which variable is absent in each equation) ");
+			System.out.println("V^2 = V'^2  + 2 a x ");
+			System.out.println("V = V' + a t ");
+			System.out.println("x = v't  +  .5 a t^2 ");
+			System.out.println("x = .5 ( v + v' ) t ");
+			System.out.println("In the problem you are working on, does it describe how long the object moved for?   Also, "
+					+ "\n is the question asking for you to calculate how long the object moved for? If yes to either, type 1. "
+					+ "\n If no to both, type 2.");
+			
+			
+			try (Scanner input10 = new Scanner(System.in)){ 
+				int solveForTime = input10.nextInt();
+				  
+				equationPicker picker1 = new equationPicker();
+				
+				
+				//If we either know the time or are trying to calculate it
+				if (solveForTime == 1) {
+					picker1.setT(true);
+					System.out.println("Cool beans, so we either know the time of travel or are trying to calculate it.");
+					System.out.println(" ");
+					System.out.println("Is the question asking for how fast the object was moving at the beginning of"
+							+ "\n its motion? "
+							+ "\n Do we know how fast the object was moving at the beginning? (It'll either say the "
+							+ "\n object started from rest (zero velocity) or that the object began moving at __ m/s. Type 1 "
+							+ "\n if you answered yes to either, Type 2 if you said no to both. ");
+					
+					
+					try (Scanner input11 = new Scanner(System.in)){
+						 int solveForIV = input11.nextInt();
+						 
+						 if (solveForIV == 1) {
+							 picker1.setIV(true);
+							 System.out.println("Got it, so we need initial velocity in our equation.");
+							 System.out.println("Is the question asking for how fast the object was moving at the end of its motion?"
+							 		+ "\n Do we know how fast the object was moving at the end? (It'll either say the"
+							 		+ "\n object came to a stop...zero velocity... or something describing the velocity in m/s after speeding "
+							 		+ "\n up or slowing down. Type 1 if you answered yes to either, Type 2 if you said no to both.");
+							 
+							 
+							 try (Scanner input12 = new Scanner(System.in)){
+								 int solveForVF = input12.nextInt();
+								 
+								 if (solveForVF == 1) {
+									 
+									 picker1.setVF(true);
+									 System.out.println("Got it, so we need final velocity in our equation.");
+									 System.out.println("Is the question asking for acceleration? "
+									 		+ "\n Does it tell us the acceleration in m/s^2 or m/s/s? "
+									 		+ "\n (IF the object is in freefall, then the acceleration would be 9.8 m/s/s. "
+									 		+ "\n Type 1 if you answered yes to either, Type 2 if you said no to both.\"");
+									 
+									 
+									 try (Scanner input13 = new Scanner(System.in)){
+										 int solveForA = input13.nextInt();
+										 
+										 if (solveForA == 1) {
+											 picker1.setA(true);
+											 System.out.println("Got it, so we need accelertion in our equation.");
+											 System.out.println("Is the question asking for displacement? "
+											 		+ "\n (how far the object moved) "
+											 		+ "\n Does it tell us the displacement in meters? "
+											 		+ "\n Type 1 if you answered yes to either, Type 2 if you said no to both.\"");
+											 
+											 
+											 try ( Scanner input14 = new Scanner(System.in)){
+												 int solveForD = input14.nextInt();
+												 
+												 if (solveForD == 1) {
+													 picker1.setD(true);
+													 picker1.finalChoice();
+												 }
+												 
+											 }
+											 
+										 } else {
+										 picker1.setA(false);
+										 picker1.setD(true);
+										 picker1.finalChoice();
+										 
+										 
+									 }
+									 
+										 
+									 }
+									 
+									 
+								 } else { 
+								 picker1.setVF(false);
+								 picker1.setA(true);
+								 picker1.setD(true);
+								 picker1.finalChoice();
+								 
+									 
+									 
+									 
+								 }
+								 
+								 
+							 }
+							 
+							 
+							 
+							 
+							 
+							 
+						 } else { 
+							//if Initial Velocity is irrelevant
+							 picker1.setIV(false);
+							 picker1.setD(true);
+							 picker1.setA(true);
+							 picker1.setVF(true);
+							 picker1.finalChoice();
+						 }
+						 
+						
+						
+						
+					}}
+					
+					
+					else {
+						picker1.setT(false);
+						picker1.setA(true);
+						picker1.setD(true);
+						picker1.setIV(true);
+						picker1.setVF(true);
+						picker1.finalChoice();
+				
+					
+				}
+				
+				
+				
+				
+				}
+			
+			
+			
+		}
+			
+		
+		
+		
+		
+		}}}}
+		
